@@ -1,0 +1,28 @@
+function email($to, $subject, $email_content)
+    {
+        // Email configuration
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user'] = 'your_email@gmail.com'; // Update with your Gmail email
+        $config['smtp_pass'] = 'your_password'; // Update with your Gmail password
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+        $config['mailtype'] = 'html'; // Set email format to HTML
+        $config['validation'] = true;
+
+        // Initialize email configuration
+        $this->email->initialize($config);
+        $this->email->from('your_sender_email@example.com', 'Your Name'); // Update with your sender email and name
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message($email_content);
+
+        // Send email
+        if ($this->email->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
